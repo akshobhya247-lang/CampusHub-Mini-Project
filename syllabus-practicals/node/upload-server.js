@@ -1,0 +1,12 @@
+import express from 'express';
+import multer from 'multer';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { randomUUID } from 'node:crypto';
+const app = express();
+const here = path.dirname(fileURLToPath(import.meta.url));
+const storage = multer.diskStorage({ destination: path.join(here, 'uploads'), filename: (_req, file, cb) => cb(null, `${randomUUID()}${path.extname(file.originalname).toLowerCase()}`) });
+const upload = multer({ storage, limits: { fileSize: 2 * 1024 * 1024 }, fileFilter: (_req, file, cb) => cb(null, ['image/png','image/jpeg','application/pdf','text/plain'].includes(file.mimetype)) });
+app.post('/upload', upload.single('file'), (req, res) => req.file ? res.status(201).json({ uploaded: true, filename: req.file.filename, size: req.file.size }) : res.status(400).json({ error: 'Choose a supported file.' }));
+app.use((err, _req, res, _next) => res.status(400).json({ error: err.message || 'Upload failed' }));
+app.listen(3102, () => console.log('Upload practical listening at http://localhost:3102; POST /upload field name=file'));

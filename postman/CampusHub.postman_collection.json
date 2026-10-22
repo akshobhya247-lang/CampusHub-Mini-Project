@@ -1,0 +1,15 @@
+{
+  "info": {"name":"CampusHub REST API","description":"CRUD and validation examples for CampusHub. Set baseUrl to the deployed API or local server.","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable":[{"key":"baseUrl","value":"http://localhost:3000"},{"key":"taskId","value":"REPLACE_WITH_CREATED_TASK_ID"}],
+  "item":[
+    {"name":"Health","request":{"method":"GET","url":"{{baseUrl}}/api/health"}},
+    {"name":"List tasks","request":{"method":"GET","url":"{{baseUrl}}/api/tasks"}},
+    {"name":"Create task (201)","event":[{"listen":"test","script":{"exec":["pm.test('Created with 201', () => pm.response.to.have.status(201));","const body = pm.response.json();","if (body.id) pm.collectionVariables.set('taskId', body.id);"]}}],"request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"title\": \"Test task from Postman\",\n  \"course\": \"Web Development\",\n  \"description\": \"CRUD verification\",\n  \"dueDate\": \"2026-11-01\",\n  \"priority\": \"High\",\n  \"completed\": false\n}"},"url":"{{baseUrl}}/api/tasks"}},
+    {"name":"Get task by ID","request":{"method":"GET","url":"{{baseUrl}}/api/tasks/{{taskId}}"}},
+    {"name":"Update task (PATCH)","request":{"method":"PATCH","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"completed\": true,\n  \"priority\": \"Medium\"\n}"},"url":"{{baseUrl}}/api/tasks/{{taskId}}"}},
+    {"name":"Validation error (400)","event":[{"listen":"test","script":{"exec":["pm.test('Invalid task is rejected', () => pm.response.to.have.status(400));"]}}],"request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"title\":\"\",\"priority\":\"Urgent\"}"},"url":"{{baseUrl}}/api/tasks"}},
+    {"name":"Invalid ID error (400)","request":{"method":"GET","url":"{{baseUrl}}/api/tasks/not-an-object-id"}},
+    {"name":"Missing task (404)","request":{"method":"GET","url":"{{baseUrl}}/api/tasks/507f1f77bcf86cd799439011"}},
+    {"name":"Delete task","request":{"method":"DELETE","url":"{{baseUrl}}/api/tasks/{{taskId}}"}}
+  ]
+}

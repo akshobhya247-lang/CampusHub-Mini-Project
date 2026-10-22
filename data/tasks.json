@@ -1,0 +1,39 @@
+[
+  {
+    "id": "demo-1",
+    "title": "Revise CSS selectors",
+    "course": "Web Development",
+    "dueDate": "2026-10-23",
+    "priority": "High",
+    "completed": false,
+    "createdAt": "2026-10-22T10:00:00.000Z"
+  },
+  {
+    "id": "demo-2",
+    "title": "Prepare Node.js notes",
+    "course": "Programming",
+    "dueDate": "2026-10-24",
+    "priority": "Medium",
+    "completed": false,
+    "createdAt": "2026-10-22T10:00:00.000Z"
+  },
+  {
+    "id": "demo-3",
+    "title": "Submit graph theory worksheet",
+    "course": "Discrete Mathematics",
+    "dueDate": "2026-10-21",
+    "priority": "Low",
+    "completed": true,
+    "createdAt": "2026-10-22T10:00:00.000Z"
+  },
+  {
+    "id": "09b439ea-72d8-4dbf-b0af-95a2868c6de4",
+    "title": "Upgrade UI test",
+    "course": "Web Development",
+    "description": "Verify notes are saved",
+    "dueDate": "2026-10-29",
+    "priority": "High",
+    "completed": false,
+    "createdAt": "2026-10-22T14:25:22.104Z"
+  }
+]

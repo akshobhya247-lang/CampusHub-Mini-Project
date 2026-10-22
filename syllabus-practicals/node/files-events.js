@@ -1,0 +1,13 @@
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { EventEmitter } from 'node:events';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+const here = path.dirname(fileURLToPath(import.meta.url));
+const outDir = path.join(here, 'runtime-data');
+await mkdir(outDir, { recursive: true });
+const file = path.join(outDir, 'message.txt');
+await writeFile(file, 'CampusHub filesystem practical\n', 'utf8');
+console.log(await readFile(file, 'utf8'));
+const events = new EventEmitter();
+events.on('taskCreated', task => console.log(`Event received: ${task.title}`));
+events.emit('taskCreated', { title: 'Prepare WAD viva' });
