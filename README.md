@@ -1,4 +1,4 @@
-# CampusHub — Student Planner (WAD Full-Stack Edition)
+# CampusHub — Student Planner 
 
 CampusHub is a responsive student task planner upgraded from the original vanilla HTML/CSS/JavaScript and native Node HTTP server into a React + Express + MongoDB application. The UI uses a flat green, red, white, and black palette with square corners, no promotional hero, and no gradient styling.
 
